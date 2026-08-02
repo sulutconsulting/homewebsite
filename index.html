@@ -172,8 +172,18 @@
       var(--bg);
   }
   .hero .container{position:relative;z-index:1;width:100%;}
+  .hero::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:200px;
+    background:linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events:none;
+  }
   .hero-content{
-    max-width:780px;
+    max-width:860px;
   }
   .hero-tag{
     display:inline-block;
@@ -202,7 +212,6 @@
   .hero p{
     font-size:1.05rem;
     color:rgba(255,255,255,0.85);
-    max-width:620px;
     margin-bottom:36px;
   }
   .hero-buttons{
@@ -321,6 +330,13 @@
   .about-left p{
     color:rgba(255,255,255,0.8);
     margin-bottom:16px;
+  }
+  .about-photo{
+    width:100%;
+    max-height:280px;
+    object-fit:cover;
+    border-radius:14px;
+    margin-top:8px;
   }
   .about-right{
     background:var(--card-bg);
@@ -626,7 +642,7 @@
     flex-shrink:0;
   }
   .contact-detail h5{font-size:0.95rem;font-weight:400;margin-bottom:2px;}
-  .contact-detail span{font-size:0.88rem;color:rgba(255,255,255,0.7);}
+  .contact-detail span{display:block;font-size:0.88rem;color:rgba(255,255,255,0.7);}
 
   form{
     background:var(--card-bg);
@@ -922,7 +938,7 @@
 <section class="kpi-section" id="kpis">
   <div class="container">
     <span class="kpi-tag fade-in">Por qué el bienestar corporativo ya no es opcional</span>
-    <h2 class="fade-in">Los números detrás de la seguridad y el bienestar laboral en Panamá, Colombia y Perú</h2>
+    <h2 class="fade-in">Los números detrás de la seguridad y el bienestar laboral en LATAM y el mundo</h2>
 
     <div class="kpi-grid fade-in">
       <div class="kpi-item">
@@ -974,6 +990,7 @@
         <p>SULUT Consulting es una consultora especializada en bienestar corporativo y Seguridad y Salud en el Trabajo (SST), con operaciones en Panamá y Colombia.</p>
         <p>Acompañamos a empresas de todos los tamaños a construir culturas organizacionales más sanas, seguras y productivas, combinando cumplimiento normativo con estrategias reales de cuidado humano.</p>
         <p>Creemos que el bienestar no es un beneficio adicional: es la base sobre la que se construyen equipos resilientes y organizaciones sostenibles.</p>
+        <img src="imagenes/Servicios/salud%20mental.jpg" alt="Equipo celebrando un logro en el trabajo" class="about-photo">
       </div>
       <div class="about-right">
         <div class="diff-item">
@@ -1181,7 +1198,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-question">¿Trabajan solo en Panamá y Colombia, o también en otros países? <span class="plus">+</span></button>
-        <div class="faq-answer"><p>Actualmente operamos de forma directa en Panamá y Colombia, con conocimiento profundo de la normativa local de SST. Para otros países de la región, evaluamos cada caso de forma personalizada.</p></div>
+        <div class="faq-answer"><p>Actualmente operamos de forma directa en Panamá, Colombia y Perú, con conocimiento profundo de la normativa local de SST. Para otros países de la región, evaluamos cada caso de forma personalizada.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-question">¿Cuánto tiempo toma implementar un sistema de gestión de bienestar? <span class="plus">+</span></button>
@@ -1217,7 +1234,9 @@
           </div>
           <div>
             <h5>Teléfono / WhatsApp</h5>
-            <span>+507 6987-4731</span>
+            <span>Panamá: +507 6987-4731</span>
+            <span>Colombia: +57 311 813-9200</span>
+            <span>Perú: +51 997 543-172</span>
           </div>
         </div>
         <div class="contact-detail">
@@ -1227,15 +1246,6 @@
           <div>
             <h5>Correo electrónico</h5>
             <span>sulutconsulting@gmail.com</span>
-          </div>
-        </div>
-        <div class="contact-detail">
-          <div class="icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <h5>Oficinas</h5>
-            <span>Ciudad de Panamá, Panamá · Bogotá, Colombia</span>
           </div>
         </div>
       </div>
@@ -1272,6 +1282,7 @@
             <option value="" disabled selected>Selecciona tu país</option>
             <option value="panama">Panamá</option>
             <option value="colombia">Colombia</option>
+            <option value="peru">Perú</option>
             <option value="otro">Otro</option>
           </select>
         </div>
@@ -1291,7 +1302,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#hero" class="logo"><img src="logo.png" alt="SULUT Consulting"></a>
-        <p>Consultora de bienestar corporativo y Seguridad y Salud en el Trabajo, con operaciones en Panamá y Colombia.</p>
+        <p>Consultora de bienestar corporativo y Seguridad y Salud en el Trabajo</p>
         <div class="social-links">
           <a href="#" aria-label="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V23h-4v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V23h-4V8z"/></svg>
