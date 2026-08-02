@@ -167,8 +167,8 @@
     background:
       radial-gradient(circle at 85% 20%, rgba(109,211,171,0.15), transparent 45%),
       radial-gradient(circle at 10% 80%, rgba(109,211,171,0.08), transparent 40%),
-      linear-gradient(100deg, rgba(6,46,56,0.75) 0%, rgba(6,46,56,0.55) 45%, rgba(6,46,56,0.3) 100%),
-      url("imagenes/hero%20background.png") center center / cover no-repeat,
+      linear-gradient(100deg, rgba(6,46,56,0.85) 0%, rgba(6,46,56,0.65) 45%, rgba(6,46,56,0.4) 100%),
+      url("imagenes/hero%202%20sulut.png") center center / cover no-repeat,
       var(--bg);
   }
   .hero .container{position:relative;z-index:1;}
@@ -211,29 +211,63 @@
     flex-wrap:wrap;
   }
 
-  /* ---------- Metrics bar ---------- */
-  .metrics{
-    background:var(--accent);
-    padding:50px 0;
+  /* ---------- KPI section ---------- */
+  .kpi-section{
+    background:var(--bg);
+    padding:90px 0;
   }
-  .metrics .container{
+  .kpi-tag{
+    color:var(--accent);
+    display:block;
+    font-size:0.85rem;
+    font-weight:500;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .kpi-section h2{
+    color:var(--white);
+    font-size:clamp(1.6rem,3vw,1.9rem);
+    font-weight:500;
+    line-height:1.35;
+    max-width:640px;
+    margin-bottom:40px;
+  }
+  .kpi-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    text-align:center;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:1px;
+    background:rgba(255,255,255,0.08);
+    border-radius:12px;
+    overflow:hidden;
   }
-  .metric-item h3{
-    color:var(--bg);
-    font-size:clamp(1.8rem,3vw,2.6rem);
-    font-weight:400;
-    margin-bottom:6px;
+  .kpi-item{
+    background:var(--bg);
+    padding:32px 26px;
   }
-  .metric-item p{
-    color:var(--bg);
-    font-weight:400;
-    font-size:0.9rem;
-    opacity:0.85;
+  .kpi-number{
+    font-size:clamp(1.9rem,3vw,2.4rem);
+    font-weight:500;
+    color:var(--white);
+    line-height:1;
   }
+  .kpi-item p{
+    color:#B9D8D2;
+    font-size:0.95rem;
+    line-height:1.5;
+    margin:14px 0;
+  }
+  .kpi-source{
+    color:var(--accent);
+    font-size:0.7rem;
+    opacity:0.9;
+  }
+  .kpi-item.highlight{
+    background:linear-gradient(135deg, var(--accent), #219ED5);
+  }
+  .kpi-item.highlight .kpi-number{color:var(--bg);}
+  .kpi-item.highlight p{color:#0A3F3A;font-weight:500;}
+  .kpi-item.highlight .kpi-source{color:#0A3F3A;opacity:0.85;}
 
   /* ---------- Section headers ---------- */
   .section-header{
@@ -725,28 +759,80 @@
   }
 
   /* ---------- WhatsApp float ---------- */
-  .whatsapp-float{
+  .whatsapp-widget{
     position:fixed;
     bottom:28px;
     right:28px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    border-radius:50%;
+    z-index:999;
+  }
+  .whatsapp-float{
     display:flex;
     align-items:center;
-    justify-content:center;
+    gap:10px;
+    background:#25D366;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+    padding:8px 22px 8px 8px;
+    border-radius:50px;
     box-shadow:0 8px 24px rgba(0,0,0,0.35);
-    z-index:999;
+    font-family:'Montserrat',sans-serif;
+    font-size:0.95rem;
+    font-weight:500;
+    white-space:nowrap;
     transition:transform 0.3s ease;
     animation:pulse 2.5s infinite;
   }
-  .whatsapp-float:hover{transform:scale(1.1);}
+  .whatsapp-float:hover{transform:scale(1.05);}
+  .whatsapp-float .wa-icon{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
   @keyframes pulse{
     0%{box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 0 0 rgba(37,211,102,0.5);}
     70%{box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 0 16px rgba(37,211,102,0);}
     100%{box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 0 0 rgba(37,211,102,0);}
   }
+  .whatsapp-menu{
+    position:absolute;
+    bottom:calc(100% + 14px);
+    right:0;
+    background:var(--bg-light);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px;
+    min-width:210px;
+    box-shadow:0 12px 32px rgba(0,0,0,0.45);
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+  }
+  .whatsapp-widget.active .whatsapp-menu{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .whatsapp-menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px;
+    color:#fff;
+    font-size:0.9rem;
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    transition:background 0.2s ease;
+  }
+  .whatsapp-menu a:last-child{border-bottom:none;}
+  .whatsapp-menu a:hover{background:rgba(109,211,171,0.12);}
+  .whatsapp-menu .flag{font-size:1.15rem;}
 
   /* ---------- Responsive ---------- */
   @media (max-width:960px){
@@ -757,7 +843,7 @@
     .resources-grid{grid-template-columns:1fr;}
     .contact-wrap{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr 1fr;}
-    .metrics .container{grid-template-columns:1fr 1fr;}
+    .kpi-grid{grid-template-columns:1fr 1fr;}
     .steps-wrap{flex-direction:column;}
     .step-arrow{transform:rotate(90deg);padding:6px 0;}
   }
@@ -787,10 +873,14 @@
     .footer-bottom{flex-direction:column;text-align:center;}
   }
   @media (max-width:520px){
-    .metrics .container{grid-template-columns:1fr 1fr;}
+    .kpi-grid{grid-template-columns:1fr;}
     .philosophy-grid{grid-template-columns:1fr;}
     .hero-buttons{flex-direction:column;}
     .hero-buttons .btn{width:100%;}
+    .whatsapp-widget{bottom:18px;right:18px;}
+    .whatsapp-float{font-size:0.8rem;padding:6px 16px 6px 6px;gap:8px;}
+    .whatsapp-float .wa-icon{width:32px;height:32px;}
+    .whatsapp-menu{min-width:180px;}
   }
 </style>
 </head>
@@ -817,10 +907,9 @@
 <header class="hero" id="hero">
   <div class="container">
     <div class="hero-content fade-in">
-      <span class="hero-tag">Panamá · Colombia</span>
       <h1>Tu socio estratégico en Bienestar Corporativo</h1>
-      <p class="subtitle">Salud mental, seguridad psicológica y liderazgo consciente para organizaciones que quieren crecer con su gente.</p>
-      <p>En SULUT Consulting diseñamos e implementamos sistemas de gestión de bienestar y Seguridad y Salud en el Trabajo (SST) que reducen el ausentismo, previenen el burnout y elevan el desempeño de tus equipos, con resultados medibles y sostenibles en el tiempo.</p>
+      <p class="subtitle">El trabajo también puede ser fuente de bienestar.</p>
+      <p>Tus colaboradores pasan la mayor parte de su día contigo. Ese tiempo puede construir salud, motivación. Eso es posible cuando una organización cuida a su gente de verdad. En SULUT Consulting diseñamos soluciones de <strong>Bienestar laboral y Seguridad y Salud en el Trabajo (SST)</strong>, a la medida de cada empresa, con resultados medibles y sostenibles e impacto real en productividad y ROI.</p>
       <div class="hero-buttons">
         <a href="#contacto" class="btn btn-primary">Solicita un diagnóstico</a>
         <a href="#servicios" class="btn btn-outline">Conoce nuestros servicios</a>
@@ -829,24 +918,48 @@
   </div>
 </header>
 
-<!-- ================= METRICS ================= -->
-<section class="metrics" style="padding:50px 0;">
+<!-- ================= KPIS ================= -->
+<section class="kpi-section" id="kpis">
   <div class="container">
-    <div class="metric-item fade-in">
-      <h3>$1T</h3>
-      <p>Pérdida global anual por estrés laboral</p>
-    </div>
-    <div class="metric-item fade-in">
-      <h3>41%</h3>
-      <p>De empleados en LATAM reportan estrés crónico</p>
-    </div>
-    <div class="metric-item fade-in">
-      <h3>4:1</h3>
-      <p>ROI promedio en programas de bienestar</p>
-    </div>
-    <div class="metric-item fade-in">
-      <h3>28%</h3>
-      <p>Reducción de ausentismo con nuestro modelo</p>
+    <span class="kpi-tag fade-in">Por qué el bienestar corporativo ya no es opcional</span>
+    <h2 class="fade-in">Los números detrás de la seguridad y el bienestar laboral en Panamá, Colombia y Perú</h2>
+
+    <div class="kpi-grid fade-in">
+      <div class="kpi-item">
+        <div class="kpi-number">53%</div>
+        <p>de los empleados está preocupado por el deterioro de su bienestar emocional</p>
+        <p class="kpi-source">Health on Demand 2025, Mercer Marsh</p>
+      </div>
+
+      <div class="kpi-item">
+        <div class="kpi-number">41%</div>
+        <p>se siente estresado la mayoría de los días de trabajo</p>
+        <p class="kpi-source">Health on Demand 2025, Mercer Marsh</p>
+      </div>
+
+      <div class="kpi-item">
+        <div class="kpi-number">US$1B</div>
+        <p>se pierden cada año por depresión y ansiedad en el mundo laboral</p>
+        <p class="kpi-source">OMS + OIT</p>
+      </div>
+
+      <div class="kpi-item">
+        <div class="kpi-number">43%</div>
+        <p>de las empresas LatAm invierte en bienestar sin una estrategia definida</p>
+        <p class="kpi-source">Redefiniendo la Salud Mental 2025, Mercer Marsh</p>
+      </div>
+
+      <div class="kpi-item highlight">
+        <div class="kpi-number">95%</div>
+        <p>de las empresas que miden el ROI de su programa de bienestar obtiene resultados positivos</p>
+        <p class="kpi-source">Informe ROI del Bienestar 2024, Wellhub</p>
+      </div>
+
+      <div class="kpi-item highlight">
+        <div class="kpi-number">4x</div>
+        <p>de retorno por cada dólar invertido en salud mental laboral</p>
+        <p class="kpi-source">OMS / The Lancet Psychiatry</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1224,9 +1337,19 @@
 </footer>
 
 <!-- ================= WHATSAPP FLOAT ================= -->
-<a href="https://wa.me/50769874731" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.74 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.18 3.03 14.69 2 12.04 2zm0 18.07h-.01a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.15 8.15 0 01-1.25-4.3c0-4.51 3.68-8.19 8.2-8.19 2.19 0 4.25.85 5.8 2.4a8.13 8.13 0 012.4 5.79c0 4.52-3.68 8.16-8.16 8.16zm4.47-6.13c-.24-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.78.97-.14.16-.29.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42-.14-.01-.31-.01-.47-.01-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.53.12.16 1.73 2.65 4.2 3.71.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.11-.22-.17-.46-.29z"/></svg>
-</a>
+<div class="whatsapp-widget" id="waWidget">
+  <button class="whatsapp-float" id="waToggle" aria-label="Contactar por WhatsApp" aria-expanded="false" aria-haspopup="true">
+    <span class="wa-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.74 1.2h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.13-2.9-7C17.18 3.03 14.69 2 12.04 2zm0 18.07h-.01a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.15 8.15 0 01-1.25-4.3c0-4.51 3.68-8.19 8.2-8.19 2.19 0 4.25.85 5.8 2.4a8.13 8.13 0 012.4 5.79c0 4.52-3.68 8.16-8.16 8.16zm4.47-6.13c-.24-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.78.97-.14.16-.29.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42-.14-.01-.31-.01-.47-.01-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.04 0 1.2.88 2.36 1 2.53.12.16 1.73 2.65 4.2 3.71.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.11-.22-.17-.46-.29z"/></svg>
+    </span>
+    Hablemos por WhatsApp
+  </button>
+  <div class="whatsapp-menu" id="waMenu">
+    <a href="https://wa.me/50769874731" target="_blank" rel="noopener"><span class="flag">🇵🇦</span> Panamá</a>
+    <a href="https://wa.me/573118139200" target="_blank" rel="noopener"><span class="flag">🇨🇴</span> Colombia</a>
+    <a href="https://wa.me/51997543172" target="_blank" rel="noopener"><span class="flag">🇵🇪</span> Perú</a>
+  </div>
+</div>
 
 <script>
   // Mobile menu toggle
@@ -1241,6 +1364,21 @@
       menuToggle.classList.remove('active');
       navLinks.classList.remove('active');
     });
+  });
+
+  // WhatsApp country picker
+  const waWidget = document.getElementById('waWidget');
+  const waToggle = document.getElementById('waToggle');
+  waToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isActive = waWidget.classList.toggle('active');
+    waToggle.setAttribute('aria-expanded', isActive);
+  });
+  document.addEventListener('click', (e) => {
+    if (!waWidget.contains(e.target)) {
+      waWidget.classList.remove('active');
+      waToggle.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // Navbar background on scroll
